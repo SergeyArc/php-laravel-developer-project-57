@@ -16,7 +16,8 @@ RUN apt-get install -y nodejs
 WORKDIR /app
 
 COPY . .
-RUN composer install
+ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN composer  install --working-dir=/var/www/html
 RUN npm ci
 RUN npm run build
 
